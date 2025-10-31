@@ -15,6 +15,8 @@ class Program
         lastName = Console.ReadLine();
 
         Console.WriteLine($"Your name is: {lastName}, {firstName} {lastName}");
-        
+
     }
 }
+
+//Console.Read() gets single charater and returns it as an int
