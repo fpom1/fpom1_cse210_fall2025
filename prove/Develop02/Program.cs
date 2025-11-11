@@ -61,7 +61,6 @@ public class Entry
 
 }
 
-
 public class PromptGenerator
 {
     private readonly List<string> prompts;
@@ -91,7 +90,6 @@ public class PromptGenerator
     }
 
 }
-
 
 class Program
 {
