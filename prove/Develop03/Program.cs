@@ -4,15 +4,14 @@ class Program
     {
         string reference = "John 3:16";
         string sentence = "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life";
-
+        Numeral numeral= new Numeral();
         Console.WriteLine("Press enter to hide more words.");
         Console.WriteLine("Type quit to quit.");
-        Console.WriteLine("");
         Reference reference1= new Reference(reference);
         string Re = reference1.ReReference();
         Words words= new Words(sentence);
-        Scriptural scriptural= new Scriptural(words.StringToList());
-        Console.WriteLine($"{Re}\n{sentence}");
+        Scriptural scriptural= new Scriptural(words.StringToList(),numeral.Difficulty());
+
         string selector = Console.ReadLine();
 
         while (selector != "quit")

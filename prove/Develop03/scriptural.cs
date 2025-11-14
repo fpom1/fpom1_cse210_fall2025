@@ -3,6 +3,7 @@ public class Scriptural
     private List<string> _words;
     private List<int> _index;
     private List<int> _checker;
+    private int _difficulty;
 
     public Scriptural()
     {
@@ -10,12 +11,13 @@ public class Scriptural
         _index = new List<int>();
         _checker = new List<int>();
     }
-    public Scriptural(List<string> input)
+    public Scriptural(List<string> input, int difficulty)
     {
         _words = input;
         _index = GetIndices();
         _checker = _index;
         _checker = ModifyIndices();
+        _difficulty = difficulty;
     }
 
         private List<int> GetIndices()
@@ -28,7 +30,7 @@ public class Scriptural
         public List<int> ModifyIndices()
     {
         Random random = new Random();
-        int removal = 2;
+        int removal = _difficulty;
         while (removal != 0)
         {
             if (_checker.Count > 0)
