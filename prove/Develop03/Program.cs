@@ -1,25 +1,4 @@
 using System;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics.Tracing;
-
-
-
-public class StringHider
-{
-    StringHider(string input, string wordToMask, char maskCharacter)
-    {}
-    public static string MaskWord(string input, string wordToMask, char maskCharacter)
-    {
-        // Escape the wordToMask to handle special regex characters
-        string pattern = Regex.Escape(wordToMask); 
-        
-        // Use Regex.Replace with a MatchEvaluator to replace the matched word
-        // with a string of mask characters of the same length.
-        return Regex.Replace(input, pattern, m => new string(maskCharacter, m.Value.Length));
-    }
-}
 
 public class Scriptural
 {
@@ -38,7 +17,7 @@ public class Scriptural
         _words = input;
         _index = GetIndices();
         _checker = _index;
-        _checker = CheckIndices();
+        _checker = ModifyIndices();
     }
 
         private List<int> GetIndices()
@@ -48,11 +27,11 @@ public class Scriptural
         return indices;
     }
 
-        public List<int> CheckIndices()
+        public List<int> ModifyIndices()
     {
         Random random = new Random();
-        int removal = 3;
-        while (removal > 0)
+        int removal = 2;
+        while (removal != 0)
         {
             if (_checker.Count > 0)
             {
@@ -70,15 +49,72 @@ public class Scriptural
 
     public string ModifedVerse()
     {
+        List<string> modifiedList = [];
         List<string> words = _words;
-        string modifedVerse = string.Join(" ", words);
+
+        foreach (var item in words.Select((value, i) => new { i, value }))
+        {
+            var index = item.i;
+            if (_checker.Contains(index))
+            {
+                modifiedList.Add(words[index]);
+            }
+            else
+            {
+                modifiedList.Add("____");
+            }
+        }
+
+        string modifedVerse = string.Join(" ", modifiedList);
         return modifedVerse;
     }
 
 }
-
 public class Reference
-{}
+{
+    private string _reference;
+    private string _book;
+    private string _chapter;
+    private string _verses;
+    public Reference()
+    {
+        _book = "";
+        _chapter = "";
+        _verses = "";
+    }
+    public Reference(string input)
+    {
+        _reference = input;
+        _book = GetBook();
+        _chapter = GetChapter();
+        _verses = GetVerses();
+    }
+    private string GetBook()
+    {
+        List<string> wordList = _reference.Split(" ").ToList();
+        return wordList[0];
+    }
+    private string GetChapter()
+    {
+        List<string> wordList = _reference.Split(" ").ToList();
+        List<string> numbers = wordList[1].Split(":").ToList();
+        return numbers[0];
+    }
+    private string GetVerses()
+    {
+        List<string> wordList = _reference.Split(" ").ToList();
+        List<string> numbers = wordList[1].Split(":").ToList();
+        return numbers[1];
+    }
+    public string ReReference()
+    {        
+        List<string> numbs = [_chapter,_verses];
+        string numbers = string.Join(":", numbs);
+        List<string> full = [_book,numbers];
+        string reRef = string.Join(" ", full);
+        return reRef;
+    }
+}
 public class Words
 {
     private string _scripture;
@@ -104,30 +140,42 @@ public class Words
 
 
 
-
 class Program
 {
     static void Main()
     {
-        string sentence = "The silly creature is very silly and filled with bees";
-        string maskedSentence = StringHider.MaskWord(sentence, "apple123", '_');
-        Console.WriteLine(maskedSentence); // Output: The secret password is **********.
+        string reference = "John 3:16";
+        string sentence = "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life";
+
+        Console.WriteLine("Press enter to hide more words.");
+        Console.WriteLine("Type quit to quit.");
+        Console.WriteLine("");
+        Reference reference1= new Reference(reference);
+        string Re = reference1.ReReference();
         Words words= new Words(sentence);
-        foreach (string i in words.StringToList())
-        {
-            Console.WriteLine(i);
-        }
         Scriptural scriptural= new Scriptural(words.StringToList());
-        string hat = "hat";
-        while (hat != "quit")
+        Console.WriteLine($"{Re}\n{sentence}");
+        string selector = Console.ReadLine();
+
+        while (selector != "quit")
         {
-            hat = Console.ReadLine();
-            Console.WriteLine(scriptural.ModifedVerse());
-            foreach (int i in scriptural.CheckIndices())
+            if (selector == "")
             {
-                Console.WriteLine(i);
+                Console.WriteLine($"{Re}\n{scriptural.ModifedVerse()}");
+                selector = Console.ReadLine();
+                if (scriptural.ModifyIndices().Count() == 0)
+                {
+                    Console.WriteLine($"{Re}\n{scriptural.ModifedVerse()}");
+                    selector = "quit";
+                }
+            }
+            else
+            {
+                Console.WriteLine($"{Re}\n{scriptural.ModifedVerse()}");
+                selector = Console.ReadLine();
             }
         }
+
     }
 
 }
