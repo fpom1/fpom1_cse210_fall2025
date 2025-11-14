@@ -5,12 +5,15 @@ class Program
 {
 
     //function
+
     static void testValues(int x, float y, double z)
     {
         Console.WriteLine($"the values are {x} {y} {z}");
     }
     static void Main(string[] args)
     {
+        List<int> ints = [1,2,3,4,5];
+        Console.WriteLine(ints);
         Console.WriteLine("Hello Sandbox World!");
         string firstName;
         string lastName;
