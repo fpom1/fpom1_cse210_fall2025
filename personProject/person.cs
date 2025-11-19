@@ -10,7 +10,13 @@ public class Person
     {
         _firstName = firstName;
         _lastName = lastName;
-        if (age > 0 && age < 200)
+        SetAge(age);
+        SetWeight(weight);
+    }
+
+    public void SetAge(int age)
+    {
+        if (age > 0 && age <150)
         {
             _age = age;
         }
@@ -18,7 +24,11 @@ public class Person
         {
             _age = 0;
         }
-        if (weight > 0 && weight < 300)
+    }
+
+    public void SetWeight(int weight)
+    {
+        if (weight > 0 && weight <500)
         {
             _weight = weight;
         }
@@ -28,7 +38,7 @@ public class Person
         }
     }
 
-    public string GetPersonInformation()
+    protected string GetPersonInformation()
     {
         return ($"{_firstName} {_lastName}, age: {_age}, weight: {_weight}");
     }
