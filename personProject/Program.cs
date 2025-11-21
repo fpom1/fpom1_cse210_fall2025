@@ -14,6 +14,7 @@ class Program
         doctor1.SetWeight(230);
         Console.WriteLine (doctor1.GetDoctorInformation());
         int i = 5;
+        int sleepTime = 500;
         int currentLineCursor = Console.CursorTop;
         while (i > 0)
         {
@@ -21,9 +22,9 @@ class Program
             while (time > 0)
             {
                 Console.SetCursorPosition(0, currentLineCursor);
-                Console.Write ($"in:{time}");
+                Console.Write ($"in: {time}");
                 time--;
-                Thread.Sleep (100);
+                Thread.Sleep (sleepTime);
             }
             time = 5;
             while (time > 0)
@@ -33,7 +34,7 @@ class Program
                 outee.Remove(1);
                 Console.Write (outee);
                 time--;
-                Thread.Sleep (100);
+                Thread.Sleep (sleepTime);
             }
             i --;
             Console.SetCursorPosition(0, currentLineCursor);
