@@ -63,7 +63,17 @@ class Program
             }
             else if (selection == 3)
             {
-                
+                Listing listing = new Listing();
+                listing.ListingIntro();
+                listing.ListingLoading();
+                Console.WriteLine("How many seconds would you like this activity to be?");
+                int duration = GetUserInt();
+                Console.WriteLine("Ready\n");
+                listing.ListingLoading();
+                listing.ListingIt(duration);
+                listing.ListingLoading();
+                Console.WriteLine();
+                listing.ListingEnding();
             }
             else if (selection == 4)
             {
