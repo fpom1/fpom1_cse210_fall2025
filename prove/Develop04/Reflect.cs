@@ -61,7 +61,6 @@ public class Reflect : Activity
         int index = _random.Next(_questions.Count);
         return _questions[index];
     }
-
     public void ReflectIntro()
     {
         string intro = base.Intro();
