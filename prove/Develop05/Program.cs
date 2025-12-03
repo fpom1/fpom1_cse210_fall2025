@@ -1,5 +1,7 @@
 using System;
 using System.Diagnostics;
+using System.Xml.Schema;
+using Microsoft.VisualBasic;
 
 class Program
 {
@@ -30,20 +32,21 @@ class Program
         int selection = 0;
         Activity activity= new Activity(file);
         Score score = new Score();
-        while (selection != 6)
+        do 
         {
+            int goalSelection = 0;
+            activity.FileMend();
+            activity= new Activity(file);
+            string[][] info = activity.GoalStuff();
             Console.WriteLine($"\nyou have {score.ReadPoints()} ponts");
             Console.WriteLine("1. Create New Goal");
             Console.WriteLine("2. List Goals");
-            Console.WriteLine("3. Save Goals");
-            Console.WriteLine("4. Load Goals");
-            Console.WriteLine("5. Record Event");
-            Console.WriteLine("6. Quit");
-            selection = GetUserInt(1,6);
+            Console.WriteLine("3. Record Event");
+            Console.WriteLine("4. Quit");
+            selection = GetUserInt(1,4);
             if (selection == 1)
             {
                 Console.WriteLine("");
-                int goalSelection = 0;
                 Console.WriteLine("The types of goals are");
                 Console.WriteLine("1. Simple Goals");
                 Console.WriteLine("2. Checklist Goals");
@@ -52,15 +55,17 @@ class Program
                 goalSelection = GetUserInt(1,3);
                 if (goalSelection == 1)
                 {
-                    activity.Creation();
+                    activity.Create();
                 }
                 else if (goalSelection == 2)
                 {
-                    
+                    Check check = new Check(file);
+                    check.Create();
                 }
                 else if (goalSelection == 3)
                 {
-                    
+                    Eternal eternal = new Eternal(file);
+                    eternal.Create();
                 }
             }
             else if (selection == 2)
@@ -71,20 +76,61 @@ class Program
             else if (selection == 3)
             {
                 Console.WriteLine("");
-                score.AddPoints(25);
+                Console.WriteLine("What kind of goal have you completed?");
+                Console.WriteLine("1. Simple Goal");
+                Console.WriteLine("2. Checklist Goal");
+                Console.WriteLine("3. Eternal Goal");
+                goalSelection = GetUserInt(1,3);
+
+                if (goalSelection == 1)
+                {
+                    Console.WriteLine("Which goal have you completed?");
+                    int ab = GetUserInt(1,activity.GoalList());
+                    if (info[ab-1][0] == "[]")
+                    {                    
+                        activity.completion(ab);
+                        int points = int.Parse(info[ab-1][3]);
+                        score.AddPoints(points);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You have already completed this goal.");
+                    }
+                }
+                else if (goalSelection == 2)
+                {
+                    Console.WriteLine("Which goal have you completed?");
+                    Check check = new Check(file);
+                    int ab = GetUserInt(1,activity.GoalList());
+                    if (int.Parse(info[ab-1][5]) < int.Parse(info[ab-1][6])-1)
+                    {                    
+                        check.checkcompletion(ab);
+                        int points = int.Parse(info[ab-1][3]);
+                        score.AddPoints(points);
+                    }
+                    else if (int.Parse(info[ab-1][5]) < int.Parse(info[ab-1][6]))
+                    {
+                        check.checkcompletion(ab);
+                        int points = int.Parse(info[ab-1][4]);
+                        score.AddPoints(points);
+                    }
+                    else
+                    {
+                        Console.WriteLine("youve already completed this task.");
+                    }
+
+                }
+                else if (goalSelection == 3)
+                {
+                    Console.WriteLine("Which goal have you completed?");
+                    int ab = GetUserInt(1,activity.GoalList());
+                    int points = int.Parse(info[ab-1][3]);
+                    score.AddPoints(points);
+                }
             }
             else if (selection == 4)
             {
-                Console.WriteLine("");
             }
-            else if (selection == 5)
-            {
-                Console.WriteLine("");
-                Console.WriteLine("hi");
-            }
-
-        }
-
-        activity.completion(1);
+        } while(selection!=4);
     }
 }

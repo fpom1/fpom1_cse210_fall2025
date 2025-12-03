@@ -3,13 +3,29 @@ using System.Security.AccessControl;
 
 class Program
 {
+    static string[][] CsvArra(string filePath)
+    {
+        List<string[]> rows = new List<string[]>();
+        using (StreamReader sr = new StreamReader(filePath))
+        {
+            string line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                string[] values = line.Split(',');
+                rows.Add(values);
+            }
+        }
+        return rows.ToArray();
+    }
     static void Main(string[] args)
     {
-        List<string> list = ["a", "b", "c"];
-        list.Add("q");
-        foreach (string s in list)
+        string[][] hat = CsvArra("/Users/codyjensen/Documents/college/2025 Fall/Programming with Classes/fpom1_cse210_fall2025/sandbox/a.csv");
+        foreach (string[] row in hat)
         {
-            Console.WriteLine(s);
+            foreach (string values in row)
+            {
+                Console.WriteLine(values);
+            }
         }
     }
 
