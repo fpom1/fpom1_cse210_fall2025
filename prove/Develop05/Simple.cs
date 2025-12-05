@@ -91,7 +91,6 @@ class Activity: Anger
         }
 
     }
-
     public string[][] GoalStuff()
     {
         return _goalStuff;
