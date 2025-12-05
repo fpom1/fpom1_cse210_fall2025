@@ -39,11 +39,13 @@ class Program
             activity= new Activity(file);
             string[][] info = activity.GoalStuff();
             Console.WriteLine($"\nyou have {score.ReadPoints()} ponts");
+            Console.WriteLine("\nWhat would you like to do?");
             Console.WriteLine("1. Create New Goal");
             Console.WriteLine("2. List Goals");
             Console.WriteLine("3. Record Event");
-            Console.WriteLine("4. Quit");
-            selection = GetUserInt(1,4);
+            Console.WriteLine("4. Shop");
+            Console.WriteLine("5. Quit");
+            selection = GetUserInt(1,5);
             if (selection == 1)
             {
                 Console.WriteLine("");
@@ -130,7 +132,37 @@ class Program
             }
             else if (selection == 4)
             {
+                Shop shop = new Shop();
+                Console.WriteLine("\nWhat would you like to buy?");
+                shop.ShowShop();
+                int shopSelection = GetUserInt(1,shop.ShopSize());
+                shop.ChangeSelection(shopSelection);
+                if (shopSelection == 1)
+                {
+                    if (score.ReadPoints() >= shop.GiveCost(shopSelection))
+                    {
+                        score.TakePoints(shop.GiveCost(shopSelection));
+                        shop.Dance(2);
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nyou dont have enough points");
+                    }
+                }
+                else if (shopSelection == 2)
+                {
+                    if (score.ReadPoints() >= shop.GiveCost(shopSelection))
+                    {
+                        score.TakePoints(shop.GiveCost(shopSelection));
+                        shop.Dance(10);
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nyou dont have enough points");
+                    }
+                }
+
             }
-        } while(selection!=4);
+        } while(selection!=5);
     }
 }
