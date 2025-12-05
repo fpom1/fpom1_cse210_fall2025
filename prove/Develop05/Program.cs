@@ -28,8 +28,8 @@ class Program
     }
     static void Main()
     {
-        string file = "/Users/codyjensen/Documents/college/2025 Fall/Programming with Classes/fpom1_cse210_fall2025/prove/Develop05/goals.csv";
-        int selection = 0;
+        string file = "prove/Develop05/goals.csv";
+        int selection = -1;
         Activity activity= new Activity(file);
         Score score = new Score();
         do 
@@ -40,12 +40,12 @@ class Program
             string[][] info = activity.GoalStuff();
             Console.WriteLine($"\nyou have {score.ReadPoints()} ponts");
             Console.WriteLine("\nWhat would you like to do?");
+            Console.WriteLine("0. Quit");
             Console.WriteLine("1. Create New Goal");
             Console.WriteLine("2. List Goals");
             Console.WriteLine("3. Record Event");
             Console.WriteLine("4. Shop");
-            Console.WriteLine("5. Quit");
-            selection = GetUserInt(1,5);
+            selection = GetUserInt(0,4);
             if (selection == 1)
             {
                 Console.WriteLine("");
@@ -132,37 +132,17 @@ class Program
             }
             else if (selection == 4)
             {
+                int shopSelection = -1;
                 Shop shop = new Shop();
-                Console.WriteLine("\nWhat would you like to buy?");
-                shop.ShowShop();
-                int shopSelection = GetUserInt(1,shop.ShopSize());
-                shop.ChangeSelection(shopSelection);
-                if (shopSelection == 1)
+                while (shopSelection != 0)
                 {
-                    if (score.ReadPoints() >= shop.GiveCost(shopSelection))
-                    {
-                        score.TakePoints(shop.GiveCost(shopSelection));
-                        shop.Dance(2);
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nyou dont have enough points");
-                    }
+                    Console.WriteLine($"\nyou have {score.ReadPoints()} ponts");
+                    Console.WriteLine("What would you like to buy?\n");
+                    shopSelection = GetUserInt(0,shop.Shoppe()-1);
+                    shop.ChangeSelection(shopSelection);
+                    shop.purchase();
                 }
-                else if (shopSelection == 2)
-                {
-                    if (score.ReadPoints() >= shop.GiveCost(shopSelection))
-                    {
-                        score.TakePoints(shop.GiveCost(shopSelection));
-                        shop.Dance(10);
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nyou dont have enough points");
-                    }
-                }
-
             }
-        } while(selection!=5);
+        } while(selection!=0);
     }
 }

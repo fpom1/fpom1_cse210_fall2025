@@ -2,7 +2,7 @@
 public class Score
 {
     private int _points;
-    private string _file = "/Users/codyjensen/Documents/college/2025 Fall/Programming with Classes/fpom1_cse210_fall2025/prove/Develop05/Score.txt";
+    private string _file = "prove/Develop05/Score.txt";
     public Score()
     {
         _points=ReadPoints();
