@@ -1,9 +1,20 @@
-using System;
-
-class Program
+namespace ConsoleAppMinesweeper
 {
-    static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine("Hello FinalProject World!");
+        static void Main(string[] args)
+        {
+            GameManager gameManager;
+            bool isGameOver = false;
+
+            while (!isGameOver)
+            {
+                gameManager = new GameManager();
+                gameManager.InitializeGame();
+                gameManager.Play();
+
+                isGameOver = gameManager.IsAnotherGame();
+            }
+        }
     }
 }
