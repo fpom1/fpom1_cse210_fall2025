@@ -46,7 +46,7 @@ namespace ConsoleAppMinesweeper
             Console.SetCursorPosition(14, 7);
             Console.Write("Use the -  Enter button  - to choose a cell/location.");
             Console.SetCursorPosition(14, 8);
-            Console.Write("Use the - Insert button  - to place a flag.");
+            Console.Write("Use the - Q button  - to place a flag.");
             Console.SetCursorPosition(14, 9);
             Console.Write("Use the - Delete button  - to remove the flag.");
             Console.SetCursorPosition(14, 10);

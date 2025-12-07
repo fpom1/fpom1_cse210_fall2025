@@ -18,7 +18,7 @@ namespace ConsoleAppMinesweeper
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     break;
                 case 5:
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
                     break;
                 case 4:
                     Console.ForegroundColor = ConsoleColor.DarkMagenta;

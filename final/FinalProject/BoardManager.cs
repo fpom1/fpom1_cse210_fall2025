@@ -121,8 +121,8 @@ namespace ConsoleAppMinesweeper
             {
                 Game2DArray[0, topAndBottomRow].CellValue = StringUtilities.FRAME_SYMBOL;
                 Game2DArray[0, topAndBottomRow].IsHidden = false;
-                Game2DArray[Game2DArray.GetLength(0) , topAndBottomRow].CellValue = StringUtilities.FRAME_SYMBOL;
-                Game2DArray[Game2DArray.GetLength(0) , topAndBottomRow].IsHidden = false;
+                Game2DArray[Game2DArray.GetLength(0) - 1, topAndBottomRow].CellValue = StringUtilities.FRAME_SYMBOL;
+                Game2DArray[Game2DArray.GetLength(0) - 1, topAndBottomRow].IsHidden = false;
             }
             for (int leftAndRightColumn = 0; leftAndRightColumn < Game2DArray.GetLength(0); leftAndRightColumn++)
             {

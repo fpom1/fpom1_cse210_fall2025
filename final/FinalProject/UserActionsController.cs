@@ -84,7 +84,7 @@ namespace ConsoleAppMinesweeper
                             CursorHandler.CursorOffSet += 2;
                             sidesCount++;
                             Console.SetCursorPosition(0, 0);
-                            Console.Write("Trying to run away huh?\nYou'll never get out from here.\nWell.. Unless you'll finish my Minesweeper.");
+                            Console.Write("Trying to run away?\nYou'll never get away!");
                             GameManager.SetThreadSleep(2500);
                             Console.SetCursorPosition(CursorHandler.CursorOffSet, upAndDown);
                             break;
