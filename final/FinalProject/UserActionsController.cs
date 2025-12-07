@@ -263,7 +263,7 @@ namespace ConsoleAppMinesweeper
                         }
                         break;
 
-                    case ConsoleKey.Insert:
+                    case ConsoleKey.Tab:
 
                         //Checks if the Insert was inside the field.
                         if (sidesCount >= 0 && upAndDownCount >= 0 && upAndDownCount < gameBoard.GetLength(0) && sidesCount < gameBoard.GetLength(1))
@@ -287,7 +287,7 @@ namespace ConsoleAppMinesweeper
                         }
                         break;
 
-                    case ConsoleKey.Delete:
+                    case ConsoleKey.Backspace:
 
                         //Checks if the Delete was inside the field.
                         if (sidesCount >= 0 && upAndDownCount >= 0 && upAndDownCount < gameBoard.GetLength(0) && sidesCount < gameBoard.GetLength(1))

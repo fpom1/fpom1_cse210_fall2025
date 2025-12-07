@@ -20,6 +20,7 @@ namespace ConsoleAppMinesweeper
         {
             InitializeInstructions();
             DifficultyHandler difficulty = new DifficultyHandler();
+            difficulty.SetUserDifficulty();
             TextManager.PrintUserDifficultyTitle();
             InitializeBoard();
             LoadingScreen.Load();

@@ -1,33 +1,23 @@
-using System.Runtime.InteropServices;
-using System.Security.AccessControl;
+using System;
 
-class Program
+class Example
 {
-    static string[][] CsvArra(string filePath)
-    {
-        List<string[]> rows = new List<string[]>();
-        using (StreamReader sr = new StreamReader(filePath))
-        {
-            string line;
-            while ((line = sr.ReadLine()) != null)
-            {
-                string[] values = line.Split(',');
-                rows.Add(values);
-            }
-        }
-        return rows.ToArray();
-    }
-    static void Main(string[] args)
-    {
-        string[][] hat = CsvArra("/Users/codyjensen/Documents/college/2025 Fall/Programming with Classes/fpom1_cse210_fall2025/sandbox/a.csv");
-        foreach (string[] row in hat)
-        {
-            foreach (string values in row)
-            {
-                Console.WriteLine(values);
-            }
-        }
-    }
+   public static void Main()
+   {
+      ConsoleKeyInfo cki;
+      // Prevent example from ending if CTL+C is pressed.
+      Console.TreatControlCAsInput = true;
 
-
+      Console.WriteLine("Press any combination of CTL, ALT, and SHIFT, and a console key.");
+      Console.WriteLine("Press the Escape (Esc) key to quit: \n");
+      do
+      {
+         cki = Console.ReadKey();
+         Console.Write(" --- You pressed ");
+         if((cki.Modifiers & ConsoleModifiers.Alt) != 0) Console.Write("ALT+");
+         if((cki.Modifiers & ConsoleModifiers.Shift) != 0) Console.Write("SHIFT+");
+         if((cki.Modifiers & ConsoleModifiers.Control) != 0) Console.Write("CTL+");
+         Console.WriteLine(cki.Key.ToString());
+       } while (cki.Key != ConsoleKey.Escape);
+    }
 }

@@ -36,7 +36,7 @@ namespace ConsoleAppMinesweeper
         public void PrintGameInstructions()
         {
             Console.SetCursorPosition(25, 1);
-            Console.Write("Welcome to my Minesweeper!");
+            Console.Write("Welcome to Minesweeper!");
             Console.SetCursorPosition(25, 2);
             Console.Write("-------------------------");
             Console.SetCursorPosition(29, 4);
@@ -46,9 +46,9 @@ namespace ConsoleAppMinesweeper
             Console.SetCursorPosition(14, 7);
             Console.Write("Use the -  Enter button  - to choose a cell/location.");
             Console.SetCursorPosition(14, 8);
-            Console.Write("Use the - Q button  - to place a flag.");
+            Console.Write("Use the - Tab button  - to place a flag.");
             Console.SetCursorPosition(14, 9);
-            Console.Write("Use the - Delete button  - to remove the flag.");
+            Console.Write("Use the - Backspace button  - to remove the flag.");
             Console.SetCursorPosition(14, 10);
             Console.Write("Use the - arrows buttons - to move around the field.");
             Console.SetCursorPosition(9, 11);
@@ -56,7 +56,7 @@ namespace ConsoleAppMinesweeper
             Console.Write("Above the cursor's position is where will you be clicking on.");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.SetCursorPosition(27, 12);
-            Console.Write("Write OK to continue - ");
+            Console.Write("Write OK to continue");
         }
 
         public void ClearUserInputGameInstructions()
